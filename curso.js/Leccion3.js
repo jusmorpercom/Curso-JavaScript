@@ -9,4 +9,3 @@ let a1nombreCompleto;
 let _nombreCompleto;
 let $nombreCompleto;
 // let 1nombreCompleto; no esta permitido iniciar el nombre de uan variable con números
-
