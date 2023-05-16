@@ -28,8 +28,6 @@ class Persona {
     }
 }
 
-//? Para heredar usamos la palabra extends
-// Esta clase hereda de Persona pero no hereda el constructor si no se le llama con la palabra super()
 class Empleado extends Persona{
     constructor(nombre, apellido, departamento){
         super(nombre, apellido); //! Con super mandamos a llamar el constructor de la clase padre y pasamos los parametros 
@@ -42,8 +40,14 @@ class Empleado extends Persona{
         this._departamento = departamento
     }
 
-}
+    //! Sobreescritura del metodo del padre 
 
+    nombreCompleto(){
+        return super.nombreCompleto()+ ', ' + this._departamento ;// ya podemos usar el atributo definido en la class hija 
+               //? Con super accedemos a alos atributos y metodos de la clase padre 
+    
+    }
+}
 let persona1 = new Persona('Juan', 'Rossi');
 console.log(persona1);
 
@@ -51,4 +55,7 @@ let empleado1 = new Empleado('juana', 'perez', 'sistemas');
 console.log(empleado1);
 
 console.log( empleado1._nombre);
+
+// TODO Podemos sobreescribir. Desde la clase hija podemos modificar el comportamiento de un metodo definido en la calse padre
 console.log( empleado1.nombreCompleto());
+// ya nos puestra el atributo de la clase hijo del departamento 
