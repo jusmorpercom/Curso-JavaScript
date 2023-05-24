@@ -1,14 +1,29 @@
 //! Palabra static en javascript. con esta podemos crear metodos que se usaran exclusivamente
 
+// TODO: Los atributos static se asocian con la clase, con la plantilla 
+// TODO: Los atributos nos staticos son atributos que podemos utilizar cuando solo se crean objetos de la clase
+
 class Persona {
+    //? los atributos static se asocian con la clase persona
+    static contadorPersona = 0; // variable que solo le pertenece a la clase Persona
 
-    static contadorObjetosPersona = 0; // variable que solo le pertenece a la clase Persona
+    //? los atributos que no estan definidos como static
+    //?  se asocian a partir del obejto de clase persona 
 
+    static get MAX_OBJ(){  //metodo que simula una constante d4e tipo estatico 
+        return 5;
+    }
 
     constructor(nombre, apellido) {
         this._nombre = nombre;
         this._apellido = apellido;
-        Persona.contadorObjetosPersona++; //para llamar 
+        if (Persona.contadorPersona < Persona.MAX_OBJ){
+            this.idPersona = ++Persona.contadorPersonas;
+        }  
+        else{
+            console.log('se ha superado el maximo de objetos permitido');
+        }
+        
 
     }
 
@@ -25,7 +40,7 @@ class Persona {
         this._apellido = apellido;
     }
     nombreCompleto() { // Es un metodo que lo hereda el Empleado 
-        return this._nombre + ' ' + this._apellido;
+        return this.idPersona + ' ' +this._apellido + this._apellido;
     }
 
     toString(){
@@ -59,7 +74,7 @@ class Empleado extends Persona { //? Clase Hija
 
     }
 }
-let persona1 = new Persona('Juan', 'Rossi');
+let persona1 = new Persona('Juan', 'Rossi'); //utilizamos el constructor 
 console.log(persona1);
 
 let empleado1 = new Empleado('juana', 'perez', 'sistemas');
@@ -84,3 +99,13 @@ console.log( Persona.contadorObjetosPersona);
 
 //? Podemos acceder desde las clases hija y no con los objetos 
 console.log( Empleado.contadorObjetosPersona);
+
+let empleado3 = new Persona('juana', 'garcia');
+console.log(empleado3);
+
+console.log(Persona.MAX_OBJ); // accedemos al valor
+
+let persona3 = new Persona('Mariano', 'lara');
+let persona4 = new Persona('armando','peña');
+let persona5 = new Persona('carlos', 'mario');
+
